@@ -1,12 +1,11 @@
 package com.avfeaster.androidlearnings
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import android.util.Log
-import androidx.fragment.app.Fragment.SavedState
 import com.avfeaster.androidlearnings.lesson1.fragments.HomeFragment
 
 class MainActivity : AppCompatActivity() {
@@ -53,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         Log.d(TAG, "Activity : onSaveInstanceState")
     }
-
 
 
     override fun onStop() {
