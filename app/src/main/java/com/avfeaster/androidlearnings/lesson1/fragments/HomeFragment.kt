@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleEventObserver
 import com.avfeaster.androidlearnings.R
 
 class HomeFragment : Fragment() {
@@ -37,6 +37,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "HomeFragment : onViewCreated")
+
+        // Fragment lifecycle (this) vs view lifecycle — e.g. with back stack, view is destroyed
+        // in onDestroyView while the fragment instance often stays alive.
+        lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            Log.d(TAG, "Fragment LifecycleOwner → $event")
+        })
+        viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            Log.d(TAG, "viewLifecycleOwner → $event")
+        })
 
         // UI setup here
         val textView = view.findViewById<TextView>(R.id.textView)
